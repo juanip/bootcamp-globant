@@ -1,0 +1,11 @@
+package ex1_2;
+
+public class Book {
+	private String name;
+	priv
+	
+	public Book (String name, Author author, double price) {...}
+
+	public Book (String name, Author author, double price, 
+	     int qtyInStock) {...}
+}

@@ -1,0 +1,14 @@
+package ex1_4;
+
+import ex1_3.MyPoint;
+
+public class MyCircle {
+
+	private MyPoint center;
+	private int radius;
+	
+	public MyCircle(int x, int y, int radius) {
+		this.center = new MyPoint(x,y);
+		this.radius = radius;
+	}
+}

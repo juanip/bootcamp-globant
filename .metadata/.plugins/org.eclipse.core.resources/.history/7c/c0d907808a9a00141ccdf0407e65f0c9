@@ -1,0 +1,11 @@
+package ex1_4;
+
+import ex1_3.MyPoint;
+
+public class MyCircleTest {
+	public static void main(String[] args) {
+		// Test program
+		MyPoint p1 = new MyPoint(1, 1);
+	}
+
+}

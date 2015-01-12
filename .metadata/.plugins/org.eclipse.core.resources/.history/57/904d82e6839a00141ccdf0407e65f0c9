@@ -1,0 +1,6 @@
+package ex1_2;
+
+public class Author {
+
+	private String name;
+}

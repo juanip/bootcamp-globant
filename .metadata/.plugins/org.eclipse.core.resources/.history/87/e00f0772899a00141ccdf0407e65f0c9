@@ -1,0 +1,8 @@
+package ex1_4;
+
+import ex1_3.MyPoint;
+
+public class MyCircle {
+
+	private MyPoint center;
+}
