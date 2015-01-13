@@ -185,6 +185,12 @@ You will commit all your code on a daily basis, when you finish your practice.
 
 1. [OOP Exercises](http://www.ntu.edu.sg/home/ehchua/programming/java/J3f_OOPExercises.html)
 2. Design a building like a house and provide a builder to build it.
+* Create a House class
+* Create a HouseBuilder that:
+** Allows you to add from 1 to 3 bedrooms (call N times the builder's method per room you want to add)
+** Add amenities (kitchen, pool, backyard, garden, etc). Only one will be alloed, further adds of the same type shuold throw an error.
+** Add a build method that will return a new instance of House
+** Overwrite the House's toString method to describe the house.
 3. Design a hospital and provide classes to build it (builder, factories, etc).
 
 #####Key Points:#####
