@@ -1,12 +1,16 @@
 public class Main {
 
 	public static void main(String[] args) {
-		HouseDirector hd = new HouseDirector(new HouseBuilder());
-		House house = null;
+		HouseBuilder hb1 = new HouseBuilder();
+		House house1;
 
-		hd.constructHouse();
-		house = hd.getHouse();
+		HouseBuilder hb2 = new HouseBuilder();
+		House house2;
 
-		System.out.println(house);
+		house1 = hb1.addBarbecue().addBedroom().addBedroom().addDiningroom().getHouse();
+		System.out.println(house1);
+
+		house2 = hb2.addSwimmingPool().addBedroom().addDiningroom().getHouse();
+		System.out.println(house2);
 	}
 }

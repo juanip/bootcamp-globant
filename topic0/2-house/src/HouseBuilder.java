@@ -1,52 +1,52 @@
-public class HouseBuilder implements Builder {
+public class HouseBuilder {
 
-	House house = new House();
+	private int bedrooms = 0;
+	private boolean diningroom = false;
+	private boolean swimmingPool = false;
+	private boolean barbecue = false;
 
-	@Override
+	public HouseBuilder addBedroom() {
+		if (this.bedrooms < 3) {
+			this.bedrooms++;
+		} else {
+			throw new RuntimeException("Too many bedrooms!");
+		}
+
+		return this;
+	}
+
+	public HouseBuilder addDiningroom() {
+		if (!this.diningroom) {
+			this.diningroom = true;
+		} else {
+			throw new RuntimeException("There is a dining room alredy!");
+		}
+
+		return this;
+	}
+
+	public HouseBuilder addBarbecue() {
+		if (!this.barbecue) {
+			this.barbecue = true;
+		} else {
+			throw new RuntimeException("There is a barbecue alredy!");
+		}
+
+		return this;
+	}
+
+	public HouseBuilder addSwimmingPool() {
+		if (!this.swimmingPool) {
+			this.swimmingPool = true;
+		} else {
+			throw new RuntimeException("There is a swimming pool alredy!");
+		}
+
+		return this;
+	}
+
 	public House getHouse() {
-		return house;
+		return new House(bedrooms, barbecue, diningroom, swimmingPool);
 	}
 
-	@Override
-	public void paintHouse() {
-		house.setColor("Red");
-	}
-
-	@Override
-	public void buildBedrooms() {
-		try {
-			house.setBedroom("A little bedrooom with a bed and a wardrobe.");
-			house.setBedroom("Another bedroom with blue carpet and two beds.");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void buildDiningroom() {
-		try {
-			house.setDiningroom("A huge dining room with a jar full of cookies.");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void buildBarbecue() {
-		try {
-			house.setBarbecue("A big barbecue room with a fridge full of beer.");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void buildSwimmingPool() {
-		try {
-			house.setSwimmingPool("A majestic swimming pool with a scarily tall trampoline");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 }
