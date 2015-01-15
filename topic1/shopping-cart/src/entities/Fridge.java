@@ -27,7 +27,13 @@ public class Fridge extends Appliance {
 
 	@Override
 	public String toString() {
-		return getSerialNumber() + " | Fridge: " + getCapacity() + " lts. List Price: $" + getListPrice();
+		StringBuffer sb = new StringBuffer();
+		sb.append(getSerialNumber());
+		sb.append(". Fridge - ");
+		sb.append(getCapacity());
+		sb.append("lts. ........ $");
+		sb.append(getListPrice());
 
+		return sb.toString();
 	}
 }

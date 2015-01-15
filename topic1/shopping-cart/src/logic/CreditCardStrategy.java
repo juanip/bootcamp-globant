@@ -2,7 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 
-import entities.Appliance;
+import entities.Item;
 
 public class CreditCardStrategy implements PayStrategy {
 
@@ -26,10 +26,10 @@ public class CreditCardStrategy implements PayStrategy {
 	}
 
 	@Override
-	public double getFinalPrice(ArrayList<Appliance> appliances) {
+	public double getFinalPrice(ArrayList<Item> appliances) {
 		double finalPrice = 0;
 
-		for (Appliance a : appliances) {
+		for (Item a : appliances) {
 			finalPrice += a.getListPrice();
 		}
 

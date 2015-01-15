@@ -27,6 +27,13 @@ public class TV extends Appliance {
 
 	@Override
 	public String toString() {
-		return getSerialNumber() + " | TV: " + getScreenSize() + " inches. List Price: $" + getListPrice();
+		StringBuffer sb = new StringBuffer();
+		sb.append(getSerialNumber());
+		sb.append(". TV - ");
+		sb.append(getScreenSize());
+		sb.append(" inches. ........ $");
+		sb.append(getListPrice());
+
+		return sb.toString();
 	}
 }

@@ -5,9 +5,21 @@ import java.util.ArrayList;
 import logic.PayStrategy;
 
 public class Cart {
-	private ArrayList<Appliance> appliances = new ArrayList<Appliance>();
+	private static int globalPaymentNumber;
+
+	public static int generatePaymentNumber() {
+		globalPaymentNumber++;
+		return globalPaymentNumber;
+	}
+
+	public static void setPaymentNumber(int number) {
+		globalPaymentNumber = number;
+	}
+
+	private ArrayList<Item> appliances = new ArrayList<Item>();
 	private double finalPrice = 0;
 	private PayStrategy paymentMethod;
+	private int paymentNumber;
 
 	public Cart() {
 		this(null);
@@ -21,11 +33,11 @@ public class Cart {
 		this.paymentMethod = paymentMethod;
 	}
 
-	public void addAppliance(Appliance appliance) {
-		this.appliances.add(appliance);
+	public void addItem(Item item) {
+		this.appliances.add(item);
 	}
 
-	public ArrayList<Appliance> getAppliances() {
+	public ArrayList<Item> getItem() {
 		return this.appliances;
 	}
 
@@ -35,5 +47,20 @@ public class Cart {
 
 	public void closeCart() {
 		finalPrice = paymentMethod.getFinalPrice(appliances);
+		paymentNumber = generatePaymentNumber();
+	}
+
+	public String getInfoListItems() {
+		StringBuffer sb = new StringBuffer();
+
+		for (Item a : appliances) {
+			sb.append("\n" + a.toString());
+		}
+
+		return sb.toString();
+	}
+
+	public int getPaymentNumber() {
+		return this.paymentNumber;
 	}
 }

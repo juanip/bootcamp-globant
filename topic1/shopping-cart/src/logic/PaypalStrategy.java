@@ -2,7 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 
-import entities.Appliance;
+import entities.Item;
 
 public class PaypalStrategy implements PayStrategy {
 
@@ -23,17 +23,17 @@ public class PaypalStrategy implements PayStrategy {
 	}
 
 	@Override
-	public double getFinalPrice(ArrayList<Appliance> appliances) {
-		Appliance cheapest = appliances.get(0);
+	public double getFinalPrice(ArrayList<Item> appliances) {
+		Item cheapest = appliances.get(0);
 		double finalPrice = 0;
 
-		for (Appliance a : appliances) {
+		for (Item a : appliances) {
 			if (a.getListPrice() < cheapest.getListPrice()) {
 				cheapest = a;
 			}
 		}
 
-		for (Appliance a : appliances) {
+		for (Item a : appliances) {
 			if (!a.equals(cheapest)) {
 				finalPrice += a.getListPrice();
 			}

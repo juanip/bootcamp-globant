@@ -2,9 +2,9 @@ package logic;
 
 import java.util.ArrayList;
 
-import entities.Appliance;
+import entities.Item;
 
 public interface PayStrategy {
 
-	public double getFinalPrice(ArrayList<Appliance> appliances);
+	public double getFinalPrice(ArrayList<Item> appliances);
 }

@@ -1,6 +1,6 @@
 package entities;
 
-public abstract class Appliance {
+public abstract class Appliance implements Item {
 	private final int serialNumber;
 	private double listPrice;
 
@@ -26,4 +26,5 @@ public abstract class Appliance {
 	}
 
 	public abstract String toString();
+
 }
