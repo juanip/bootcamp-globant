@@ -1,8 +1,0 @@
-package ex1_7;
-
-public class Snippet {
-	public String getAuthorName() { 
-			return getAuthor().getName();
-		}
-}
-
