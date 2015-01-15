@@ -7,14 +7,12 @@ public class Circle { // save as "Circle.java"
 
 	// 1st constructor, which sets both radius and color to default
 	public Circle() {
-		radius = 1.0;
-		color = "red";
+		this(1.0, "red");
 	}
 
 	// 2nd constructor with given radius, but color default
 	public Circle(double radius) {
-		this.radius = radius;
-		this.color = "red";
+		this(radius, "red");
 	}
 
 	// Construtor to construct a new instance of Circle with the given radius
@@ -44,6 +42,7 @@ public class Circle { // save as "Circle.java"
 		this.color = color;
 	}
 
+	@Override
 	public String toString() {
 		return "Circle: radius=" + radius + " color=" + color;
 	}

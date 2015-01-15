@@ -28,6 +28,7 @@ public class Author {
 		this.email = email;
 	}
 
+	@Override
 	public String toString() {
 		return getName() + " (" + getGender() + ") at " + getEmail();
 	}

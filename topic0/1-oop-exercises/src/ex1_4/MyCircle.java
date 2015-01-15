@@ -8,8 +8,7 @@ public class MyCircle {
 	private int radius;
 
 	public MyCircle(int x, int y, int radius) {
-		this.center = new MyPoint(x, y);
-		this.radius = radius;
+		this(new MyPoint(x, y), radius);
 	}
 
 	public MyCircle(MyPoint center, int radius) {
@@ -49,6 +48,7 @@ public class MyCircle {
 		return Math.PI * getRadius() * getRadius();
 	}
 
+	@Override
 	public String toString() {
 		return "Circle @ (" + getCenterX() + ", " + getCenterY() + ") radius=" + getRadius();
 	}

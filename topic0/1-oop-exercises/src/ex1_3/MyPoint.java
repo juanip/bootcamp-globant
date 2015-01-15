@@ -6,8 +6,7 @@ public class MyPoint {
 	private int y;
 
 	public MyPoint() {
-		this.x = 0;
-		this.y = 0;
+		this(0, 0);
 	}
 
 	public MyPoint(int x, int y) {
@@ -32,19 +31,18 @@ public class MyPoint {
 	}
 
 	public void setXY(int x, int y) {
-		this.x = x;
-		this.y = y;
+		setX(x);
+		setY(y);
 	}
 
+	@Override
 	public String toString() {
 		return "(" + getX() + ", " + getY() + ")";
 	}
 
 	public double distance(int x, int y) { // this version takes two ints as
 											// arguments
-		int xDiff = this.x - x;
-		int yDiff = this.y - y;
-		return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+		return distance(new MyPoint(x, y));
 	}
 
 	public double distance(MyPoint another) { // this version takes a MyPoint

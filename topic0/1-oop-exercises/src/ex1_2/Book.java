@@ -8,10 +8,7 @@ public class Book {
 	private int qtyInStock;
 
 	public Book(String name, Author author, double price) {
-		this.name = name;
-		this.author = author;
-		this.price = price;
-		this.qtyInStock = 0;
+		this(name, author, price, 0);
 	}
 
 	public Book(String name, Author author, double price, int qtyInStock) {
@@ -57,6 +54,7 @@ public class Book {
 		return getAuthor().getGender();
 	}
 
+	@Override
 	public String toString() {
 		return "'" + getName() + "' by " + getAuthorName() + " (" + getAuthorGender() + ") at " + getAuthorEmail();
 	}

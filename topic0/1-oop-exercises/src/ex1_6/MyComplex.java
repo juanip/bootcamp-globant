@@ -31,6 +31,7 @@ public class MyComplex {
 		this.imag = imag;
 	}
 
+	@Override
 	public String toString() {
 		return "(" + getReal() + " + " + getImag() + "i)";
 	}
@@ -44,7 +45,7 @@ public class MyComplex {
 	}
 
 	public boolean equal(double real, double imag) {
-		return (this.real == real && this.imag == imag);
+		return this.equal(new MyComplex(real, imag));
 	}
 
 	public boolean equal(MyComplex another) {
