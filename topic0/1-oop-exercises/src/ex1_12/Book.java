@@ -26,14 +26,27 @@ public class Book {
 	}
 
 	public boolean removeAuthorByName(String authorName) {
+		boolean flag = false;
+		Author[] authorsAux = new Author[5];
+		int count = 0;
+
 		for (int i = 0; i < numAuthors; i++) {
 			if (this.authors[i].getName() == authorName) {
-				this.authors[i] = null;
-				return true;
+				flag = true;
+				continue;
+			} else {
+				authorsAux[count] = this.authors[i];
+				count++;
 			}
 		}
 
-		return false;
+		if (flag) {
+			this.authors = authorsAux;
+			this.numAuthors--;
+		}
+
+		return flag;
+
 	}
 
 	public String getName() {
@@ -61,11 +74,11 @@ public class Book {
 	}
 
 	public void printAuthors() {
-		String desc = "";
+		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < numAuthors; i++) {
-			desc += "\n" + authors[i];
+			sb.append("\n" + authors[i]);
 		}
-		System.out.println(desc);
+		System.out.println(sb.toString());
 	}
 
 	@Override

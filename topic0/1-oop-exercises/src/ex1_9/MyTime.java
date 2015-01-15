@@ -54,14 +54,14 @@ public class MyTime {
 
 	@Override
 	public String toString() {
-		String desc = "";
-		desc += hour < 10 ? "0" + hour : hour;
-		desc += ":";
-		desc += minute < 10 ? "0" + minute : minute;
-		desc += ":";
-		desc += second < 10 ? "0" + second : second;
+		StringBuffer sb = new StringBuffer();
+		sb.append(hour < 10 ? "0" + hour : hour);
+		sb.append(":");
+		sb.append(minute < 10 ? "0" + minute : minute);
+		sb.append(":");
+		sb.append(second < 10 ? "0" + second : second);
 
-		return desc;
+		return sb.toString();
 	}
 
 	public MyTime nextSecond() {

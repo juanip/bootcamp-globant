@@ -24,13 +24,13 @@ public class TestCircle { // save as "TestCircle.java"
 		// Declare and allocate an instance of class circle called c4
 		// with default radius and color
 		Circle c4 = new Circle();
-		c3.setRadius(5.0); // change radius
-		c3.setColor("yellow"); // change color
+		c4.setRadius(5.0); // change radius
+		c4.setColor("yellow"); // change color
 
-		System.out.println(c3.toString()); // explicit call
-		System.out.println(c3); // println() calls toString() implicitly, same
+		System.out.println(c4.toString()); // explicit call
+		System.out.println(c4); // println() calls toString() implicitly, same
 								// as above
-		System.out.println("Operator '+' invokes toString() too: " + c3); // '+'
+		System.out.println("Operator '+' invokes toString() too: " + c4); // '+'
 																			// invokes
 																			// toString()
 																			// too
