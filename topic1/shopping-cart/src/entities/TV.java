@@ -1,5 +1,7 @@
 package entities;
 
+import logic.MailNotificactionObserver;
+
 public class TV extends Appliance {
 
 	private double screenSize;
@@ -15,6 +17,11 @@ public class TV extends Appliance {
 	public TV(int serialNumber, double price, double screenSize) {
 		super(serialNumber, price);
 		setScreenSize(screenSize);
+	}
+
+	public TV(int serialNumber, double price, double screenSize, MailNotificactionObserver observer) {
+		this(serialNumber, price, screenSize);
+		this.addObserver(observer);
 	}
 
 	public void setScreenSize(double screenSize) {

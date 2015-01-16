@@ -36,4 +36,9 @@ public class CreditCardStrategy implements PayStrategy {
 		return finalPrice * DISCOUNT;
 	}
 
+	@Override
+	public String toString() {
+		return "Credit Card";
+	}
+
 }

@@ -2,8 +2,12 @@ package entities;
 
 import java.util.ArrayList;
 
-public class Offer implements Item {
+import logic.MailNotificactionObserver;
+import logic.MailNotificationSubject;
 
+public class Offer implements Item, MailNotificationSubject {
+
+	private ArrayList<MailNotificactionObserver> observers = new ArrayList<MailNotificactionObserver>();
 	private ArrayList<Item> offers = new ArrayList<Item>();
 	private double discount;
 	private final int code;
@@ -21,6 +25,16 @@ public class Offer implements Item {
 
 	public void setDiscount(double discount) {
 		this.discount = discount;
+		doNotify(this);
+	}
+
+	public Offer(int code, String name, MailNotificactionObserver observer) {
+		this(code, name, 1);
+		this.addObserver(observer);
+	}
+
+	public int getCode() {
+		return this.code;
 	}
 
 	public double getDiscount() {
@@ -64,5 +78,23 @@ public class Offer implements Item {
 	@Override
 	public String toString() {
 		return getInfoListItems();
+	}
+
+	@Override
+	public void addObserver(MailNotificactionObserver observer) {
+		this.observers.add(observer);
+	}
+
+	@Override
+	public void removeObserver(MailNotificactionObserver observer) {
+		this.observers.remove(observer);
+	}
+
+	@Override
+	public void doNotify(MailNotificationSubject item) {
+		for (MailNotificactionObserver o : this.observers) {
+			o.priceChanged(item);
+		}
+
 	}
 }

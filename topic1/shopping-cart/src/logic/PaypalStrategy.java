@@ -41,4 +41,9 @@ public class PaypalStrategy implements PayStrategy {
 
 		return finalPrice;
 	}
+
+	@Override
+	public String toString() {
+		return "Paypal";
+	}
 }

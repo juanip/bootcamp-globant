@@ -27,9 +27,7 @@ public class TestCart {
 
 		cart1.closeCart();
 
-		System.out.println("Payment Method: Cash");
-		System.out.println(cart1.getInfoListItems());
-		System.out.println("\nFinal price: $" + cart1.getFinalPrice());
+		System.out.println(cart1);
 
 		// Credit Card
 		Cart cart2 = new Cart();
@@ -42,9 +40,7 @@ public class TestCart {
 
 		cart2.closeCart();
 
-		System.out.println("\nPayment Method: Credit Card");
-		System.out.println(cart2.getInfoListItems());
-		System.out.println("\nFinal price: $" + cart2.getFinalPrice());
+		System.out.println(cart2);
 
 		// Paypal
 		Cart cart3 = new Cart();
@@ -57,9 +53,7 @@ public class TestCart {
 
 		cart3.closeCart();
 
-		System.out.println("\nPayment Method: Paypal");
-		System.out.println(cart3.getInfoListItems());
-		System.out.println("\nFinal price: $" + cart3.getFinalPrice());
+		System.out.println(cart3);
 
 		// Offer
 

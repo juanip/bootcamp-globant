@@ -2,9 +2,11 @@ package entities;
 
 import java.util.ArrayList;
 
+import logic.MailNotificactionObserver;
+import logic.MailNotificationSubject;
 import logic.PayStrategy;
 
-public class Cart {
+public class Cart implements MailNotificationSubject {
 	private static int globalPaymentNumber;
 
 	public static int generatePaymentNumber() {
@@ -16,6 +18,7 @@ public class Cart {
 		globalPaymentNumber = number;
 	}
 
+	private ArrayList<MailNotificactionObserver> observers = new ArrayList<MailNotificactionObserver>();
 	private ArrayList<Item> appliances = new ArrayList<Item>();
 	private double finalPrice = 0;
 	private PayStrategy paymentMethod;
@@ -27,6 +30,11 @@ public class Cart {
 
 	public Cart(PayStrategy paymentMethod) {
 		this.setPaymentMethod(paymentMethod);
+	}
+
+	public Cart(PayStrategy paymentMethod, MailNotificactionObserver observer) {
+		this(paymentMethod);
+		this.addObserver(observer);
 	}
 
 	public void setPaymentMethod(PayStrategy paymentMethod) {
@@ -48,6 +56,7 @@ public class Cart {
 	public void closeCart() {
 		finalPrice = paymentMethod.getFinalPrice(appliances);
 		paymentNumber = generatePaymentNumber();
+		doNotify(this);
 	}
 
 	public String getInfoListItems() {
@@ -62,5 +71,28 @@ public class Cart {
 
 	public int getPaymentNumber() {
 		return this.paymentNumber;
+	}
+
+	@Override
+	public String toString() {
+		return "Transaction " + getPaymentNumber() + " - " + this.paymentMethod + ":\n" + getInfoListItems() + "\nFinal price: $"
+				+ getFinalPrice();
+	}
+
+	@Override
+	public void addObserver(MailNotificactionObserver observer) {
+		this.observers.add(observer);
+	}
+
+	@Override
+	public void removeObserver(MailNotificactionObserver observer) {
+		this.observers.remove(observer);
+	}
+
+	@Override
+	public void doNotify(MailNotificationSubject item) {
+		for (MailNotificactionObserver o : this.observers) {
+			o.newTransaction(item);
+		}
 	}
 }

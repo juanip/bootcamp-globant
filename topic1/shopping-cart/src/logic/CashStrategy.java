@@ -31,4 +31,9 @@ public class CashStrategy implements PayStrategy {
 		return finalPrice;
 	}
 
+	@Override
+	public String toString() {
+		return "Cash";
+	}
+
 }

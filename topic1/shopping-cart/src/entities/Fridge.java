@@ -1,5 +1,7 @@
 package entities;
 
+import logic.MailNotificactionObserver;
+
 public class Fridge extends Appliance {
 
 	private double capacity;
@@ -15,6 +17,11 @@ public class Fridge extends Appliance {
 	public Fridge(int serialNumber, double price, double capacity) {
 		super(serialNumber, price);
 		setCapacity(capacity);
+	}
+
+	public Fridge(int serialNumber, double price, double capacity, MailNotificactionObserver observer) {
+		this(serialNumber, price, capacity);
+		this.addObserver(observer);
 	}
 
 	public void setCapacity(double capacity) {
