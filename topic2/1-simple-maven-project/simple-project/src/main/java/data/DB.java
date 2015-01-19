@@ -11,8 +11,8 @@ public class DB {
 
 	private static Connection connection;
 	private static final String db = "my-db";
-	private static final String user = "root";
-	private static final String pass = "64586458";
+	private static final String user = "user";
+	private static final String pass = "---";
 
 	public static Connection getConnection() {
 		if (connection == null) {
