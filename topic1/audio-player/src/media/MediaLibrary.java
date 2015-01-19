@@ -3,7 +3,23 @@ package media;
 import java.util.ArrayList;
 
 public class MediaLibrary {
+
+	private static MediaLibrary mediaLibrary;
+
+	public static MediaLibrary getMediaLibrary() {
+		if (mediaLibrary == null) {
+			mediaLibrary = new MediaLibrary();
+		}
+
+		return mediaLibrary;
+	}
+
 	private ArrayList<Track> library = new ArrayList<Track>();
+
+	// singleton
+	private MediaLibrary() {
+
+	}
 
 	public void addMedia(Track track) {
 		this.library.add(track);

@@ -7,12 +7,13 @@ import media.Track;
 
 public class MusicPlayer {
 
-	private MediaLibrary library = new MediaLibrary();
+	private MediaLibrary library;
 	private ArrayList<Track> playlist = new ArrayList<Track>();
 	private Track currentTrack;
-	private MediaPlayerState state;
+	private MusicPlayerState state;
 
 	public MusicPlayer() {
+		this.library = MediaLibrary.getMediaLibrary();
 		this.stop();
 	}
 
@@ -48,17 +49,17 @@ public class MusicPlayer {
 		if (this.currentTrack == null) {
 			this.currentTrack = this.playlist.get(0);
 		}
-		this.state = new PlayState();
+		this.state = MusicPlayerState.PLAY;
 		this.toString();
 	}
 
 	public void pause() {
-		this.state = new PauseState();
+		this.state = MusicPlayerState.PAUSE;
 		this.toString();
 	}
 
 	public void stop() {
-		this.state = new StopState();
+		this.state = MusicPlayerState.STOP;
 		this.toString();
 	}
 
