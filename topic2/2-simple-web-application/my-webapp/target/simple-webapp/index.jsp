@@ -1,7 +1,7 @@
 <html>
 <head>
 <style type="text/css">
-background-color: <%= Math.random() > 0.5 ? "blue" : "red" %>
+body {background-color: <%= Math.random() > 0.5 ? "blue" : "red" %>}
 </style>
 </head>
 <body>
