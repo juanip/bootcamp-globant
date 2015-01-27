@@ -1,0 +1,111 @@
+POST users
+
+  Creates a new user and returns it.
+  Response format: JSON.
+
+  Parameters:
+    json:
+      name    The name of the new user.
+
+  Example request:
+    POST http://example.com/users
+    content-type: application/json
+    { "name" : "Juan Perez" }
+
+  Example result:
+    {
+      "id" : 0,
+      "name" : "Juan Perez"
+    }
+
+
+
+GET users
+
+  Returns a collection of users.
+  Response format: JSON.
+  
+  Parameters:
+    none
+
+  Example request:
+    GET http://example.com/users
+
+  Example result:
+    [
+      {
+        "id" : 0,
+        "name" : "Juan Perez"
+      },
+      {
+        "id" : 1,
+        "name" : "Emilio Fernandez"
+      }
+    ]
+
+
+
+GET users/{id}
+
+  Returns data for the user with the given id.
+  Response format: JSON.
+
+  Parameters:
+    id        The id of the user for which to return results for.
+
+  Example request:
+    GET http://example.com/users/0
+
+  Example result:
+    {
+      "id" : 0,
+      "name" : "Juan Perez"
+    }
+
+
+
+PUT users
+
+  Updates the info of a user and returns the user.
+  Response format: JSON.
+
+  Parameters:
+    json:
+      id      The id of the user.
+      name    The name of the new user.
+
+  Example request:
+    PUT http://example.com/users
+    content-type: application/json
+    { "id" : 0, "name" : "Juan Pedro" }
+
+  Example result:
+    {
+      "id" : 0,
+      "name" : "Juan Pedro"
+    }
+
+
+
+DELETE users/{id}
+
+  Removes a user and return the updated list of users.
+  Response format: JSON.
+
+  Parameters:
+    id        The id of the user.
+
+  Example request:
+    DELETE http://example.com/users/0
+
+  Example result:
+    [
+      {
+        "id" : 1,
+        "name" : "Emilio Fernandez"
+      },
+      {
+        "id" : 2,
+        "name" : "Antonella Ordoñez"
+      }
+    ]
