@@ -1,9 +1,13 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 
 	private long id;
 	private String name;
+	private List<Photo> photos = new ArrayList<Photo>();
 
 	public User() {
 	};
@@ -23,5 +27,9 @@ public class User {
 
 	public long getId() {
 		return id;
+	}
+
+	public void addPhoto(Photo photo) {
+		this.photos.add(photo);
 	}
 }

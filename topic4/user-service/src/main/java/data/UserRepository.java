@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entities.User;
+import entities.UserNotFoundException;
 
 public class UserRepository {
 
@@ -74,10 +75,16 @@ public class UserRepository {
 		}
 	}
 
-	class UserNotFoundException extends RuntimeException {
-		public UserNotFoundException() {
-			super("User not found");
+	public boolean existUser(long userID) {
+		boolean flag = false;
+		for (User u : this.users) {
+			if (u.getId() == userID) {
+				flag = true;
+				break;
+			}
 		}
+
+		return flag;
 	}
 
 }
