@@ -142,7 +142,7 @@ POST photos/{userID}
 
 GET photos/{userID}
   
-  Returns a collection of photos from the user given.
+  Returns a collection of photos from the given user.
   Response format: JSON.
 
   Parameters:
