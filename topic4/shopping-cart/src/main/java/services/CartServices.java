@@ -2,20 +2,46 @@ package services;
 
 import java.util.List;
 
+import data.CartRepository;
+import data.ProductRepository;
 import entities.Cart;
 import entities.CreditCard;
 import entities.Product;
 
-public interface CartServices {
+public class CartServices implements ICartServices {
 
-	public abstract Cart createCart();
+	private final CartRepository cartRepository = CartRepository.getInstance();
+	private final ProductRepository productRepository = ProductRepository.getInstance();
 
-	public abstract Cart getCart(long id);
+	@Override
+	public Cart createCart() {
+		return cartRepository.createCart();
+	}
 
-	public abstract List<Product> getProducts(long id);
+	@Override
+	public Cart getCart(long id) {
+		return cartRepository.getCart(id);
+	}
 
-	public abstract Cart addProduct(long idCart, Product product);
+	@Override
+	public List<Product> getProducts(long id) {
+		return cartRepository.getCart(id).getProductList();
+	}
 
-	public abstract Cart performPayment(long id, CreditCard creditCard);
+	@Override
+	public Cart addProduct(long idCart, Product product) {
+		Cart cart = cartRepository.getCart(idCart);
+		cart.addProduct(productRepository.getProduct(product.getId()));
+
+		return cart;
+	}
+
+	@Override
+	public Cart performPayment(long id, CreditCard creditCard) {
+		Cart cart = cartRepository.getCart(id);
+		cart.performPayment(creditCard);
+
+		return cart;
+	}
 
 }

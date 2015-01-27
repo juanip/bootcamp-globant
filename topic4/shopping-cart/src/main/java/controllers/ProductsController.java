@@ -1,4 +1,4 @@
-package services;
+package controllers;
 
 import java.util.List;
 
@@ -9,31 +9,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import data.ProductRepository;
+import services.IProductsServices;
+import services.ProductsServices;
 import entities.Product;
 
 @Controller
 @RequestMapping("/products")
-public class ProductsController implements ProductsServices {
+public class ProductsController {
 
-	private final ProductRepository productRepository = ProductRepository.getInstance();
+	private final IProductsServices productsServices = new ProductsServices();
 
-	@Override
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody List<Product> getProducts() {
-		return productRepository.getProducts();
+		return productsServices.getProducts();
 	}
 
-	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody Product getProduct(@PathVariable long id) {
-		return productRepository.getProduct(id);
+		return productsServices.getProduct(id);
 	}
 
-	@Override
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public @ResponseBody Product addProduct(@RequestBody Product product) {
-		return productRepository.createProduct(product.getDescription(), product.getPrice());
+		return productsServices.addProduct(product);
 	}
-
 }

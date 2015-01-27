@@ -2,14 +2,26 @@ package services;
 
 import java.util.List;
 
+import data.ProductRepository;
 import entities.Product;
 
-public interface ProductsServices {
+public class ProductsServices implements IProductsServices {
 
-	public abstract List<Product> getProducts();
+	private final ProductRepository productRepository = ProductRepository.getInstance();
 
-	public abstract Product getProduct(long id);
+	@Override
+	public List<Product> getProducts() {
+		return productRepository.getProducts();
+	}
 
-	public abstract Product addProduct(Product product);
+	@Override
+	public Product getProduct(long id) {
+		return productRepository.getProduct(id);
+	}
+
+	@Override
+	public Product addProduct(Product product) {
+		return productRepository.createProduct(product.getDescription(), product.getPrice());
+	}
 
 }
