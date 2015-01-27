@@ -52,6 +52,14 @@ public class Cart {
 		}
 	}
 
+	public boolean getOpen() {
+		return this.open;
+	}
+
+	public CreditCard getCreditCard() {
+		return this.creditCard;
+	}
+
 	class CartAlreadyCloseException extends RuntimeException {
 		public CartAlreadyCloseException() {
 			super("The payment has already been made");

@@ -40,9 +40,9 @@ public class CartController implements ICartServices {
 	}
 
 	@Override
-	@RequestMapping(value = "/{idCart}/add", method = RequestMethod.POST)
-	public @ResponseBody Cart addProduct(@PathVariable long idCart, @RequestBody Product product) {
-		return cartServices.addProduct(idCart, product);
+	@RequestMapping(value = "/{id}/add", method = RequestMethod.POST)
+	public @ResponseBody Cart addProduct(@PathVariable long id, @RequestBody Product product) {
+		return cartServices.addProduct(id, product);
 	}
 
 	@Override

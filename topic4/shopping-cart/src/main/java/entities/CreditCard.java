@@ -2,20 +2,19 @@ package entities;
 
 public class CreditCard {
 
-	private String cardNumber;
+	private String number;
 	private String client;
 
 	public CreditCard() {
-
 	}
 
-	public CreditCard(String cardNumber, String client) {
-		this.cardNumber = cardNumber;
+	public CreditCard(String number, String client) {
+		this.number = number;
 		this.client = client;
 	}
 
-	public String getCardNumber() {
-		return cardNumber;
+	public String getNumber() {
+		return number;
 	}
 
 	public String getClient() {
