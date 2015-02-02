@@ -1,22 +1,31 @@
 package meetings.entities;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "time_slots")
 public class TimeSlot {
 
+	@Column(name = "month")
 	private int month;
+	@Column(name = "day")
 	private int day;
+	@Column(name = "year")
 	private int year;
+	@Column(name = "begin_hour")
 	private int beginHour;
+	@Column(name = "end_hour")
 	private int endHour;
 
 	@Id
 	@GeneratedValue
+	@Column(name = "time_slot_id")
 	private Long id;
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "timeSlot")

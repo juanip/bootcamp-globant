@@ -3,21 +3,28 @@ package meetings.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "meetings")
 public class Meeting {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "meeting_id")
 	private Long id;
 
 	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "meetings_attendees", joinColumns = { @JoinColumn(name = "meeting_id") }, inverseJoinColumns = { @JoinColumn(name = "attendee_id") })
 	private List<Attendee> attendees;
 
 	@OneToOne(cascade = CascadeType.ALL)
