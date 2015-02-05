@@ -8,4 +8,6 @@ import shopping_cart.entities.CreditCard;
 @Repository("creditCardRepository")
 public interface CreditCardRepository extends JpaRepository<CreditCard, Long> {
 
+	CreditCard findByNumber(String number);
+
 }

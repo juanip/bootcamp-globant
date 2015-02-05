@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import shopping_cart.entities.Category;
 import shopping_cart.entities.Product;
+import shopping_cart.exceptions.ProductNotFoundException;
 import shopping_cart.repositories.ProductRepository;
 
 @Component
@@ -20,7 +22,6 @@ public class ProductDAO {
 		return productRepository.findByCategory(category);
 	}
 
-	// TO-DO throw not found exception
 	public List<Product> getProducts(String description) {
 		return productRepository.findByDescriptionLike(description);
 	}
@@ -30,6 +31,16 @@ public class ProductDAO {
 	}
 
 	public Product getProduct(Long productId) {
-		return productRepository.findOne(productId);
+		Product product = productRepository.findOne(productId);
+
+		if (product == null) {
+			throw new ProductNotFoundException();
+		}
+
+		return product;
+	}
+
+	public Product createProduct(String description, double price, Category category) {
+		return this.productRepository.save(new Product(description, price, category));
 	}
 }

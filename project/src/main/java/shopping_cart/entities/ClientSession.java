@@ -1,57 +1,31 @@
 package shopping_cart.entities;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class ClientSession {
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS, value = "session")
+public class ClientSession implements Serializable {
 
 	private Client client;
-	private String token;
-
-	private Date beginTime;
-	private Date endTime;
 
 	public ClientSession() {
-	}
-
-	public ClientSession(Client client) {
-		this.client = client;
-		this.beginTime = new Date();
-		this.token = generateToken();
-		this.endTime = addThirtyMinutes(beginTime);
-	}
-
-	// TO-DO
-	private String generateToken() {
-		return "1234";
-	}
-
-	private Date addThirtyMinutes(Date date) {
-		return new Date(date.getTime() + 1800000);
-	}
-
-	public boolean isValid() {
-		return endTime.after(new Date());
-	}
-
-	public String getToken() {
-		return this.token;
 	}
 
 	public Client getClient() {
 		return this.client;
 	}
 
-	// public ShoppingCart getShoppingCart() {
-	// if (client.getShoppingCart() == null) {
-	// client.setShoppingCart(new ShoppingCart());
-	// }
-	//
-	// return client.getShoppingCart();
-	// }
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
 	@Override
 	public String toString() {
-		return "{\"token\":\"" + getToken() + "\"}";
+		return "session for client " + client.getUser();
 	}
 
 }

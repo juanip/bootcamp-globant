@@ -27,4 +27,7 @@ public class ItemLineDAO {
 		this.itemLineRepository.save(new ItemLine(product, quantity, shoppingCart));
 	}
 
+	public ItemLine save(ItemLine itemLine) {
+		return this.itemLineRepository.save(itemLine);
+	}
 }

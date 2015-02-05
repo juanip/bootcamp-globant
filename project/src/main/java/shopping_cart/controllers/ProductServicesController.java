@@ -22,7 +22,6 @@ public class ProductServicesController {
 	private IProductServices productServices;
 
 	// get all
-
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody List<Product> getProducts() {
 		return productServices.getProducts();

@@ -9,4 +9,6 @@ import shopping_cart.entities.Client;
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
 	public Client findByUser(String user);
+
+	public Client findByName(String name);
 }

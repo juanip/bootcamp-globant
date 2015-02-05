@@ -1,0 +1,75 @@
+<html>
+<head>
+<style>
+  label {display: block}
+  form {width: 220px; display:inline-block;}
+</style>
+</head>
+<body>
+
+  <form method="POST" action="http://localhost:8080/clients/new">
+    <fieldset>
+      <legend>New Client</legend>
+      <label> <input placeholder="Name" type="text" name="name" value=""></label>
+      <label> <input placeholder="User" type="text" name="user" value=""></label>
+      <label> <input placeholder="Pass" type="text" name="password" value=""></label>
+      <input type="submit">
+    </fieldset>
+  </form>
+
+  <form method="POST" action="http://localhost:8080/clients/login">
+    <fieldset>
+      <legend>Client Login</legend>
+      <label><input placeholder="User" type="text" name="user" value=""></label>
+      <label><input placeholder="Pass" type="text" name="password" value=""></label>
+      <input type="submit">
+    </fieldset>
+  </form>
+
+  <form method="POST" action="http://localhost:8080/clients/add-creditcard">
+    <fieldset>
+      <legend>Add Credit Card</legend>
+      <label><input placeholder="Number"type="text" name="number" value=""></label>
+      <label><input placeholder="Security Code"type="text" name="security_code" value=""></label>
+      <label><input placeholder="Description"type="text" name="description" value=""></label>
+      <input type="submit">
+    </fieldset>
+  </form>
+
+  <form method="POST" action="http://localhost:8080/products/search">
+    <fieldset>
+      <legend>Search Products</legend>
+      <label><input placeholder="Query" type="text" name="query" value=""></label>
+      <input type="submit">
+    </fieldset>
+  </form>
+
+  <form method="POST" action="http://localhost:8080/shopping-cart/add-product">
+    <fieldset>
+      <legend>Add Product</legend>
+      <label><input placeholder="Product ID" type="text" name="product_id" value=""></label>
+      <label><input placeholder="Quantity" type="text" name="quantity" value=""></label>
+      <input type="submit">
+    </fieldset>
+  </form>
+
+  <form method="POST" action="http://localhost:8080/shopping-cart/buy">
+    <fieldset>
+      <legend>Buy products</legend>
+      <label><input placeholder="Credit Card Number" type="text" name="credit_card_number" value=""></label>
+      <input type="submit">
+    </fieldset>
+  </form>
+
+  <ul>
+    <li><a href="http://localhost:8080/">List URLs</a></li>
+    <li><a href="http://localhost:8080/products">List Products</a></li>
+    <li><a href="http://localhost:8080/products/categories">List Categories</a></li>
+    <li><a href="http://localhost:8080/products/categories/food">List Food</a></li>
+    <li><a href="http://localhost:8080/products/categories/drink">List Drinks</a></li>
+    <li><a href="http://localhost:8080/products/categories/dessert">List Desserts</a></li>
+    <li><a href="http://localhost:8080/shopping-cart">Shopping Cart</a></li>
+  </ul>
+
+</body>
+</html>

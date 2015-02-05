@@ -27,13 +27,19 @@ public class DefaultController {
 		sb.append(url);
 		sb.append("/clients/new");
 		sb.append(description);
-		sb.append("post json with name, user and password");
+		sb.append("post name, user and password");
 		sb.append(end);
 
 		sb.append(url);
 		sb.append("/clients/login");
 		sb.append(description);
-		sb.append("post json with user and password, returns session token");
+		sb.append("post user and password");
+		sb.append(end);
+
+		sb.append(url);
+		sb.append("/clients/add-creditcard");
+		sb.append(description);
+		sb.append("post number, security_code and description; returns client");
 		sb.append(end);
 
 		sb.append(url);
@@ -45,7 +51,7 @@ public class DefaultController {
 		sb.append(url);
 		sb.append("/products/search");
 		sb.append(description);
-		sb.append("post parameter query with the product description, returns a list of products");
+		sb.append("post query with the product description, returns a list of products");
 		sb.append(end);
 
 		sb.append(url);
@@ -61,21 +67,21 @@ public class DefaultController {
 		sb.append(end);
 
 		sb.append(url);
-		sb.append("/clients/:token/add-creditcard");
-		sb.append(description);
-		sb.append("post json with number, securityCode and description; returns client");
-		sb.append(end);
-
-		sb.append(url);
 		sb.append("/shopping-cart");
 		sb.append(description);
-		sb.append("post parameter token with the session's token, returns the shopping cart");
+		sb.append("returns the shopping cart");
 		sb.append(end);
 
 		sb.append(url);
 		sb.append("/shopping-cart/add-product");
 		sb.append(description);
-		sb.append("post parameter token with the session's token, product_id with product's id and quantity with the product's quantity; returns the shopping cart");
+		sb.append("post product_id and quantity, returns the shopping cart");
+		sb.append(end);
+
+		sb.append(url);
+		sb.append("/shopping-cart/buy");
+		sb.append(description);
+		sb.append("post credit_card_number, returns order");
 		// sb.append(end);
 
 		// sb.append(url);

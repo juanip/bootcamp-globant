@@ -6,13 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shopping_cart.dao.ClientDAO;
-import shopping_cart.dao.ClientSessionDAO;
 import shopping_cart.dao.CreditCardDAO;
 import shopping_cart.dao.ItemLineDAO;
 import shopping_cart.dao.OrderDAO;
 import shopping_cart.entities.Client;
-import shopping_cart.entities.ClientSession;
-import shopping_cart.entities.CreditCard;
 
 @Service
 @Configurable
@@ -20,8 +17,6 @@ public class ClientServices implements IClientServices {
 
 	@Autowired
 	private ClientDAO clientDAO;
-	@Autowired
-	private ClientSessionDAO clientSessionDAO;
 	@Autowired
 	private ItemLineDAO itemLinesDAO;
 	@Autowired
@@ -33,21 +28,20 @@ public class ClientServices implements IClientServices {
 	}
 
 	@Override
-	public Client addClient(Client client) {
-		return this.clientDAO.addClient(client.getName(), client.getUser(), client.getPassword());
+	public Client addClient(String name, String user, String password) {
+		return this.clientDAO.addClient(name, user, password);
 	}
 
 	@Override
-	public ClientSession login(String user, String password) {
-		return this.clientSessionDAO.getClientSession(user, password);
+	public Client login(String user, String password) {
+		return this.clientDAO.login(user, password);
 	}
 
 	@Override
 	@Transactional()
-	public Client addCreditCard(String token, CreditCard cc) {
-		Client client = clientSessionDAO.getClient(token);
-		System.out.println("\n\nHi!\n\n" + client);
-		creditCardDAO.createCreditCard(cc.getNumber(), cc.getSecurityCode(), cc.getDescription(), client);
+	public Client addCreditCard(String number, String securityCode, String description, Client client) {
+		client = clientDAO.getClient(client);
+		creditCardDAO.createCreditCard(number, securityCode, description, client);
 		return client;
 	}
 }

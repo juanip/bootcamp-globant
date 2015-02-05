@@ -1,17 +1,23 @@
 package shopping_cart.entities;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "clients")
-public class Client {
+public class Client implements Serializable {
 
 	@Id
 	@GeneratedValue
@@ -27,11 +33,8 @@ public class Client {
 	@Column(name = "password")
 	private String password;
 
-	// @OneToMany(mappedBy = "client")
-	// private List<CreditCard> creditCards;
-
-	// @OneToMany(mappedBy = "client")
-	// private List<Order> orders;
+	@OneToMany(mappedBy = "client")
+	private List<CreditCard> creditCards;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "shopping_cart_id")
@@ -51,6 +54,7 @@ public class Client {
 		this.password = password;
 	}
 
+	@JsonIgnore
 	public ShoppingCart getShoppingCart() {
 		return this.shoppingCart;
 	}
@@ -63,28 +67,19 @@ public class Client {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getUser() {
 		return user;
-	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public Long getId() {
 		return id;
 	}
 
+	public List<CreditCard> getCreditCards() {
+		return this.creditCards;
+	}
+
+	public boolean isValidPassword(String password) {
+		return (this.password.equals(password));
+	}
 }

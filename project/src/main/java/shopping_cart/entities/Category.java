@@ -1,5 +1,7 @@
 package shopping_cart.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "categories")
-public class Category {
+public class Category implements Serializable {
 
 	@Id
 	@GeneratedValue
@@ -27,10 +29,6 @@ public class Category {
 
 	public String getDescription() {
 		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public Long getId() {

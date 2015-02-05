@@ -20,11 +20,7 @@ public class CategoryDAO {
 		return categoryRepository.findAll();
 	}
 
-	public boolean exists(String category) {
-		if (categoryRepository.findByDescription(category) != null) {
-			return true;
-		} else {
-			return false;
-		}
+	public Category createCategory(String category) {
+		return categoryRepository.save(new Category(category));
 	}
 }

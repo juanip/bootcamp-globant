@@ -21,8 +21,15 @@ public class OrderDAO {
 	public OrderDAO() {
 	}
 
-	public Order addOrder(Client client, CreditCard creditCard) {
+	public Order createOrder(Client client, CreditCard creditCard) {
 		return this.orderRepository.save(new Order(new Date(), client, creditCard));
 	}
 
+	public Order save(Order order) {
+		return this.orderRepository.save(order);
+	}
+
+	public Order getOrder(Order order) {
+		return this.orderRepository.findOne(order.getId());
+	}
 }

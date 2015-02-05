@@ -1,5 +1,7 @@
 package shopping_cart.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "credit_cards")
-public class CreditCard {
+public class CreditCard implements Serializable {
 
 	@Id
 	@GeneratedValue
@@ -26,9 +30,6 @@ public class CreditCard {
 
 	@Column(name = "description")
 	private String description;
-
-	// @OneToMany(mappedBy = "creditCard")
-	// private List<Order> orders;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "client_id")
@@ -48,32 +49,17 @@ public class CreditCard {
 		return number;
 	}
 
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
 	public String getSecurityCode() {
 		return securityCode;
-	}
-
-	public void setSecurityCode(String securityCode) {
-		this.securityCode = securityCode;
 	}
 
 	public String getDescription() {
 		return description;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
+	@JsonIgnore
 	public Client getClient() {
 		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
 	}
 
 	public Long getId() {

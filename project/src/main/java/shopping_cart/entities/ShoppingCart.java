@@ -1,5 +1,6 @@
 package shopping_cart.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -7,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "shopping_carts")
-public class ShoppingCart {
+public class ShoppingCart implements Serializable {
 
 	@Id
 	@GeneratedValue
@@ -26,27 +26,13 @@ public class ShoppingCart {
 	@OneToMany(mappedBy = "shoppingCart")
 	private List<ItemLine> itemLines;
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "shoppingCart")
-	@JoinColumn(name = "client_id")
-	private Client client;
-
 	@Column(name = "total")
 	private double total;
 
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "shoppingCart")
+	private Client client;
+
 	public ShoppingCart() {
-	}
-
-	public ShoppingCart(Client client) {
-		this.client = client;
-	}
-
-	@JsonIgnore
-	public Client getClient() {
-		return this.client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
 	}
 
 	public List<ItemLine> getItemLines() {
@@ -66,7 +52,26 @@ public class ShoppingCart {
 		return this.total;
 	}
 
-	public void setTotal(double total) {
+	private void setTotal(double total) {
 		this.total = total;
 	}
+
+	public void updateTotal() {
+		double total = 0;
+		for (ItemLine il : itemLines) {
+			total += il.getSubTotal();
+		}
+
+		setTotal(total);
+	}
+
+	@JsonIgnore
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 }

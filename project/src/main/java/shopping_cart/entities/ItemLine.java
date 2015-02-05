@@ -1,5 +1,7 @@
 package shopping_cart.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "item_lines")
-public class ItemLine {
+public class ItemLine implements Serializable {
 
 	@Id
 	@GeneratedValue
@@ -27,46 +29,33 @@ public class ItemLine {
 	@Column(name = "quantity")
 	private int quantity;
 
-	@ManyToOne(cascade = CascadeType.ALL, optional = true)
+	@Column(name = "subtotal")
+	private double subTotal;
+
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "order_id")
 	private Order order;
 
-	@ManyToOne(cascade = CascadeType.ALL, optional = true)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "shopping_cart_id")
 	private ShoppingCart shoppingCart;
 
 	public ItemLine() {
 	}
 
-	public ItemLine(Product product, int quantity) {
+	public ItemLine(Product product, int quantity, ShoppingCart shoppingCart) {
 		this.product = product;
 		this.quantity = quantity;
-	}
-
-	public ItemLine(Product product, int quantity, ShoppingCart shoppingCart) {
-		this(product, quantity);
+		this.subTotal = product.getPrice() * quantity;
 		this.shoppingCart = shoppingCart;
-	}
-
-	public ItemLine(Product product, int quantity, Order order) {
-		this(product, quantity);
-		this.order = order;
 	}
 
 	public Product getProduct() {
 		return product;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
 	public int getQuantity() {
 		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
 	}
 
 	@JsonIgnore
@@ -83,15 +72,11 @@ public class ItemLine {
 		return shoppingCart;
 	}
 
-	public void setShoppingCart(ShoppingCart shoppingCart) {
-		this.shoppingCart = shoppingCart;
-	}
-
 	public Long getId() {
 		return id;
 	}
 
 	public double getSubTotal() {
-		return product.getPrice() * quantity;
+		return this.subTotal;
 	}
 }

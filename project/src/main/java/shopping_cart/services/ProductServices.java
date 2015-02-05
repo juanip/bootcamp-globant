@@ -25,7 +25,6 @@ public class ProductServices implements IProductServices {
 		return productDAO.getProducts(description);
 	}
 
-	// TO-DO throw category not found exception
 	@Override
 	public List<Product> getProductsByCategory(String category) {
 		return productDAO.getProductsByCategory(category);

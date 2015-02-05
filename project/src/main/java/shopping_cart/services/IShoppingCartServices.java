@@ -1,14 +1,14 @@
 package shopping_cart.services;
 
-import shopping_cart.entities.CreditCard;
+import shopping_cart.entities.Client;
 import shopping_cart.entities.Order;
 import shopping_cart.entities.ShoppingCart;
 
 public interface IShoppingCartServices {
 
-	public ShoppingCart getShoppingCart(String token);
+	public ShoppingCart getShoppingCart(Client client);
 
-	public ShoppingCart addProduct(String token, Long productId, int quantity);
+	public ShoppingCart addProduct(Long productId, int quantity, Client client);
 
-	public Order buyProducts(String token, CreditCard creditCard);
+	public Order buyProducts(Client client, String number);
 }

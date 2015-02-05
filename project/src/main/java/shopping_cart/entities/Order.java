@@ -1,5 +1,6 @@
 package shopping_cart.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Order implements Serializable {
 
 	@Id
 	@GeneratedValue
@@ -52,10 +53,6 @@ public class Order {
 		return date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
 	public double getTotal() {
 		return total;
 	}
@@ -74,10 +71,6 @@ public class Order {
 
 	public Client getClient() {
 		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
 	}
 
 	public Long getId() {
