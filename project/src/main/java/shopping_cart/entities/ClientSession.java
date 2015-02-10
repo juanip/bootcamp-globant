@@ -12,7 +12,7 @@ public class ClientSession implements Serializable {
 
 	private Client client;
 
-	public ClientSession() {
+	protected ClientSession() {
 	}
 
 	public Client getClient() {
@@ -22,10 +22,4 @@ public class ClientSession implements Serializable {
 	public void setClient(Client client) {
 		this.client = client;
 	}
-
-	@Override
-	public String toString() {
-		return "session for client " + client.getUser();
-	}
-
 }

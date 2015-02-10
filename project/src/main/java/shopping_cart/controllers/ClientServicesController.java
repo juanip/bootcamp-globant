@@ -9,14 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import shopping_cart.entities.Client;
 import shopping_cart.entities.ClientSession;
-import shopping_cart.services.IClientServices;
+import shopping_cart.exceptions.ClientNotAuthenticatedException;
+import shopping_cart.services.ClientServices;
 
 @RestController
 @RequestMapping("/clients")
 public class ClientServicesController {
 
 	@Autowired
-	private IClientServices clientServices;
+	private ClientServices clientServices;
 	@Autowired
 	private ClientSession clientSession;
 
@@ -39,6 +40,10 @@ public class ClientServicesController {
 	@RequestMapping(value = "/add-creditcard", method = RequestMethod.POST)
 	public @ResponseBody Client addCreditCard(@RequestParam("number") String number, @RequestParam("security_code") String securityCode,
 			@RequestParam("description") String description) {
+		if (clientSession.getClient() == null) {
+			throw new ClientNotAuthenticatedException();
+		}
+
 		return clientServices.addCreditCard(number, securityCode, description, clientSession.getClient());
 	}
 }

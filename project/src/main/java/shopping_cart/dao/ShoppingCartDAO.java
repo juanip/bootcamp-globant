@@ -1,14 +1,12 @@
 package shopping_cart.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import shopping_cart.entities.ShoppingCart;
 import shopping_cart.repositories.ShoppingCartRepository;
 
 @Component
-@Scope(value = "singleton")
 public class ShoppingCartDAO {
 
 	@Autowired

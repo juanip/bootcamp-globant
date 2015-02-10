@@ -20,7 +20,7 @@ public class Category implements Serializable {
 	@Column(name = "description")
 	private String description;
 
-	public Category() {
+	protected Category() {
 	}
 
 	public Category(String description) {

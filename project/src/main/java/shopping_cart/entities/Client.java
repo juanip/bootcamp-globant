@@ -40,7 +40,7 @@ public class Client implements Serializable {
 	@JoinColumn(name = "shopping_cart_id")
 	private ShoppingCart shoppingCart;
 
-	public Client() {
+	protected Client() {
 	}
 
 	public Client(String name, String user, String password, ShoppingCart shoppingCart) {

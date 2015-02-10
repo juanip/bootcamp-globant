@@ -1,7 +1,6 @@
 package shopping_cart.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import shopping_cart.entities.Client;
@@ -13,7 +12,6 @@ import shopping_cart.exceptions.WrongPasswordException;
 import shopping_cart.repositories.ClientRepository;
 
 @Component
-@Scope(value = "singleton")
 public class ClientDAO {
 
 	@Autowired

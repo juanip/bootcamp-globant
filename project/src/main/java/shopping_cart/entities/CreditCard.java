@@ -35,7 +35,7 @@ public class CreditCard implements Serializable {
 	@JoinColumn(name = "client_id")
 	private Client client;
 
-	public CreditCard() {
+	protected CreditCard() {
 	}
 
 	public CreditCard(String number, String securityCode, String description, Client client) {

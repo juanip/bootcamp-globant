@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "orders")
 public class Order implements Serializable {
@@ -40,7 +42,7 @@ public class Order implements Serializable {
 	@JoinColumn(name = "credit_card_id")
 	private CreditCard creditCard;
 
-	public Order() {
+	protected Order() {
 	}
 
 	public Order(Date date, Client client, CreditCard creditCard) {
@@ -49,8 +51,13 @@ public class Order implements Serializable {
 		this.creditCard = creditCard;
 	}
 
+	@JsonIgnore
 	public Date getDate() {
 		return date;
+	}
+
+	public String getStringDate() {
+		return date.toString();
 	}
 
 	public double getTotal() {

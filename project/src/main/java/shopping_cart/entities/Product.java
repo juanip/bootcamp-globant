@@ -30,7 +30,7 @@ public class Product implements Serializable {
 	@JoinColumn(name = "category_id")
 	private Category category;
 
-	public Product() {
+	protected Product() {
 	}
 
 	public Product(String description, double price, Category category) {

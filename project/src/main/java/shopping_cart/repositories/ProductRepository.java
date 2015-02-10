@@ -15,5 +15,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query("SELECT p FROM Product p INNER JOIN p.category c WHERE c.description = :desc")
 	public List<Product> findByCategory(@Param("desc") String category);
 
-	public List<Product> findByDescriptionLike(String description);
+	@Query("SELECT p FROM Product p WHERE p.description LIKE CONCAT(CONCAT('%', :desc), '%')")
+	public List<Product> findByDescriptionLike(@Param("desc") String description);
 }

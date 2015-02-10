@@ -40,7 +40,7 @@ public class ItemLine implements Serializable {
 	@JoinColumn(name = "shopping_cart_id")
 	private ShoppingCart shoppingCart;
 
-	public ItemLine() {
+	protected ItemLine() {
 	}
 
 	public ItemLine(Product product, int quantity, ShoppingCart shoppingCart) {

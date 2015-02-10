@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import shopping_cart.entities.Category;
 import shopping_cart.entities.Product;
-import shopping_cart.services.IProductServices;
+import shopping_cart.services.ProductServices;
 
 @RestController
 @RequestMapping("/products")
 public class ProductServicesController {
 
 	@Autowired
-	private IProductServices productServices;
+	private ProductServices productServices;
 
 	// get all
 	@RequestMapping(method = RequestMethod.GET)
