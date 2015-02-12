@@ -1,0 +1,324 @@
+GET /
+
+  Returns the list of URLs that can be requested.
+  Response format: JSON.
+  Parameters: none.
+
+
+
+POST /clients/new
+  
+  Creates a new client. Returns the client.
+  Response Format: JSON.
+  Parameters:
+    name        Client's name and last name
+    user        Client's user
+    password    Client's password
+
+  Example request:
+    POST http://example.com/clients/new
+    name="Juan Perez"
+    user="jperez"
+    password="p4$$w0Rd"
+
+  Example result:
+    {
+      "id" : 42,
+      "name" : "Juan Perez",
+      "user" : "jperez",
+      "creditCards" : null
+    }
+
+
+
+POST /clients/login
+
+  Authenticates the client. Returns the client.
+  Response Format: JSON.
+  Parameters:
+    user        Client's user
+    password    Client's password
+
+  Example request:
+    POST http://example.com/clients/login
+    user="jperez"
+    password="p4$$w0Rd"
+
+  Example result:
+    {
+      "id" : 42,
+      "name" : "Juan Perez",
+      "user" : "jperez",
+      "creditCards" : null
+    }
+
+
+
+POST /clients/add-creditcard
+  
+  Adds a credit card to the authenticated client. Returns client.
+
+  post number, security_code and description; returns client
+
+  Response Format: JSON.
+  Parameters:
+    number           Credit card's number
+    security_code    Credit card's security code
+    description      Credit card's company
+
+  Example request:
+    POST http://example.com/clients/add-creditcard
+    number="1234567890123456"
+    security_code="123"
+    description="visa"
+
+  Example result:
+    {
+      "id" : 42,
+      "name" : "Juan Perez",
+      "user" : "jperez",
+      "creditCards" : [ {
+        "id" : 1,
+        "number" : "1234567890123456",
+        "securityCode" : "123",
+        "description" : "visa"
+      } ]
+    }
+
+
+
+GET /products
+
+  Returns all the products.
+  Response Format: JSON.
+  Parameters: none
+
+  Example request:
+    GET http://example.com/products
+
+  Example result:
+    [ {
+      "id" : 1,
+      "description" : "hamburger",
+      "price" : 10.0,
+      "category" : {
+        "id" : 1,
+        "description" : "food"
+      }
+    }, {
+      "id" : 2,
+      "description" : "hotdog",
+      "price" : 8.0,
+      "category" : {
+        "id" : 1,
+        "description" : "food"
+      }
+    }, {
+      "id" : 3,
+      "description" : "coke",
+      "price" : 5.0,
+      "category" : {
+        "id" : 2,
+        "description" : "drink"
+      }
+    }, {
+      "id" : 4,
+      "description" : "juice",
+      "price" : 4.0,
+      "category" : {
+        "id" : 2,
+        "description" : "drink"
+      }
+    }, {
+      "id" : 5,
+      "description" : "icecream",
+      "price" : 7.0,
+      "category" : {
+        "id" : 3,
+        "description" : "dessert"
+      }
+    }, {
+      "id" : 6,
+      "description" : "cake",
+      "price" : 6.0,
+      "category" : {
+        "id" : 3,
+        "description" : "dessert"
+      }
+    } ]
+
+
+
+POST /products/search
+
+  Returns all the products that matches the query posted.
+  Response Format: JSON.
+  Parameters:
+    query       Product's description
+
+  Example request:
+    POST http://example.com/products/search
+    query="burger"
+
+  Example result:
+    [ {
+      "id" : 1,
+      "description" : "hamburger",
+      "price" : 10.0,
+      "category" : {
+        "id" : 1,
+        "description" : "food"
+      }
+    } ]
+
+
+
+GET /products/categories
+  
+  Returns all the products' categories.
+  Response Format: JSON.
+  Parameters: none
+
+  Example request:
+    GET http://example.com/products/categories
+
+  Example result:
+    [ {
+      "id" : 1,
+      "description" : "food"
+    }, {
+      "id" : 2,
+      "description" : "drink"
+    }, {
+      "id" : 3,
+      "description" : "dessert"
+    } ]
+
+
+
+GET /products/categories/:category
+
+  Returns all the :category's products.
+  Response Format: JSON.
+  Parameters: 
+    :category       Category's name.
+
+  Example request:
+    GET http://example.com/products/categories/food
+
+  Example result:
+    [ {
+      "id" : 1,
+      "description" : "hamburger",
+      "price" : 10.0,
+      "category" : {
+        "id" : 1,
+        "description" : "food"
+      }
+    }, {
+      "id" : 2,
+      "description" : "hotdog",
+      "price" : 8.0,
+      "category" : {
+        "id" : 1,
+        "description" : "food"
+      }
+    } ]
+
+
+
+GET /shopping-cart
+
+  Returns the shopping cart for the authenticated client.
+  Response Format: JSON.
+  Parameters: none.
+
+  Example request:
+    GET http://example.com/shopping-cart
+
+  Example result:
+    {
+      "id" : 3,
+      "itemLines" : [ ],
+      "total" : 0.0
+    }
+
+
+
+POST /shopping-cart/add-product
+
+  Adds products to the authenticated client's shopping cart. Returns shopping cart.
+  Response Format: JSON.
+  Parameters:
+    product_id       Product's id
+    quantity         Product's quantity
+
+  Example request:
+    POST http://example.com/shopping-cart/add-products
+    product_id="3"
+    quantity="4"
+
+  Example result:
+    {
+      "id" : 3,
+      "itemLines" : [ {
+        "id" : 4,
+        "product" : {
+          "id" : 3,
+          "description" : "coke",
+          "price" : 5.0,
+          "category" : {
+            "id" : 2,
+            "description" : "drink"
+          }
+        },
+        "quantity" : 4,
+        "subTotal" : 20.0
+      } ],
+      "total" : 20.0
+    }
+
+
+
+POST shopping-cart/buy
+
+  Buy shopping cart's products. Returns order.
+  Response Format: JSON.
+  Parameters:
+    credit_card_number       Credit card's number
+
+  Example request:
+    POST http://example.com/shopping-cart/buy
+    credit_card_number="1234567890123456"
+
+  Example result:
+    {
+      "id" : 3,
+      "total" : 20.0,
+      "itemLines" : [ {
+        "id" : 4,
+        "product" : {
+          "id" : 3,
+          "description" : "coke",
+          "price" : 5.0,
+          "category" : {
+            "id" : 2,
+            "description" : "drink"
+          }
+        },
+        "quantity" : 4,
+        "subTotal" : 20.0
+      } ],
+      "client" : {
+        "id" : 42,
+        "name" : "Juan Perez",
+        "user" : "jperez",
+        "creditCards" : [ {
+          "id" : 1,
+          "number" : "1234567890123456",
+          "securityCode" : "123",
+          "description" : "visa"
+        } ]
+      },
+      "stringDate" : "Thu Feb 12 16:07:40 ART 2015"
+    }
