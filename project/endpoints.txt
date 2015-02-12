@@ -57,9 +57,6 @@ POST /clients/login
 POST /clients/add-creditcard
   
   Adds a credit card to the authenticated client. Returns client.
-
-  post number, security_code and description; returns client
-
   Response Format: JSON.
   Parameters:
     number           Credit card's number
