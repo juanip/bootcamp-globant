@@ -1,7 +1,5 @@
 package shopping_cart.dao;
 
-import javax.persistence.EntityManager;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +13,6 @@ public class ItemLineDAO {
 
 	@Autowired
 	private ItemLineRepository itemLineRepository;
-	@Autowired
-	private EntityManager em;
 
 	public ItemLineDAO() {
 	}
